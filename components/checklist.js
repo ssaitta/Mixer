@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { CheckBox } from 'react-native-elements'
 import { connect } from 'react-redux'
-import store, { addBoozeThunk, removeBoozeThunk } from '../store'
+import { addBoozeThunk, removeBoozeThunk } from '../store'
 
 class Checklist extends Component {
     constructor(props){

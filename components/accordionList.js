@@ -4,12 +4,6 @@ import Accordion from 'react-native-collapsible/Accordion'
 import { Checklist } from './'
 
 class AccordionList extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            category: ''
-        }
-    }
 
     header(section) {
         return (
@@ -30,10 +24,8 @@ class AccordionList extends Component {
         );
     }
 
-
     render() {
         const { booze } = this.props
-        const { category } = this.state
         const Sections = booze;
         return (
             <Accordion

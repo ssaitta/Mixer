@@ -7,21 +7,21 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
-import { AlcoholicIngredient } from '../ingredients'
+import { nonAlcoholicIngredient } from '../ingredients'
 import { Checklist, AccordionList } from './'
 import { availableBooze } from '../store'
 
 
-class Bar extends Component {
+class Mixers extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            AlcoholicIngredients: AlcoholicIngredient
+            AlcoholicIngredients: nonAlcoholicIngredient
         }
     }
 
     render() {
-        const booze = this.state.AlcoholicIngredients
+        const mixers = this.state.nonAlcoholicIngredient
         let { availableBooze } = this.state
         return (
             <ScrollView>
@@ -30,7 +30,7 @@ class Bar extends Component {
                         Choose A Base
                     </Text>
                 </View>
-                <AccordionList booze={booze} addAnAvailbleBooze={this.addAnAvailbleBooze} />
+                <AccordionList mixers={mixers} addAnAvailbleBooze={this.addAnAvailbleBooze} />
                 {console.log(this.props.availableBooze)}
                 <View style={styles.container}>
                     <Text style={styles.contentText}
@@ -65,4 +65,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default connect(mapState)(Bar)
+export default connect(mapState)(Mixers)
