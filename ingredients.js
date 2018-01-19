@@ -1,48 +1,98 @@
 export const AlcoholicIngredient = [
-        { parent: 'rum',
-          children : ['Light rum', 'Dark rum', 'Añejo rum', 'Rum']
+        {
+                parent: 'Rum',
+                children: ['Light rum', 'Dark rum', 'Añejo rum', 'Rum']
         },
-        { parent: 'liqueur',
-         children: ['Triple sec', 'Amaretto', 'Coffee liqueur', 'Kahlua', 'Creme de Cacao', 'Ricard']
+        {
+                parent: 'Vodka',
+                children: ['Lemon vodka', 'Vodka']
+        },
+        {
+                parent: 'Brandy',
+                children: ['Applejack', 'Apricot brandy', 'Brandy', 'Blended whiskey', 'Apple brandy', 'Cherry brandy', 'Coffee brandy']
+        },
+        {
+                parent: 'Gin',
+                children: ['Gin']
+        },
+        {
+                parent: 'Whiskey',
+                children: ['Scotch', 'Southern Comfort', 'Bourbon', 'Irish whiskey']
+        },
+        {
+                parent: 'Tequila',
+                children: ['Tequila']
+        },
+
+        {
+                parent: 'Wine',
+                children: ['Champagne', 'Port', 'Red wine', 'Sherry']
+        },
+
+
+        {
+                parent: 'Vermouth',
+                children: ['Sweet Vermouth', 'Dry Vermouth']
+        },
+        {
+                parent: 'Liqueur',
+                children: ['Triple sec', 'Amaretto', 'Coffee liqueur', 'Kahlua', 'Creme de Cacao', 'Ricard']
+        },
+
+
+        {
+                parent: 'Schnapps',
+                children: ['Strawberry schnapps']
+        },
+
+
+        {
+                parent: 'Beer',
+                children: ['Cider', 'Beer']
+        },
+
+        {
+                parent: 'Aperitif',
+                children: ['Dubonnet Rouge']
         }
-        // ,
-        // {brandy: ['Applejack', 'Apricot brandy', 'Brandy', 'Blended whiskey', 'Apple brandy', 'Cherry brandy', 'Coffee brandy']},
-        // vodka: ['Lemon vodka', 'Vodka'],
-        // schnapps: ['Strawberry schnapps'],
-        // whiskey: ['Scotch', 'Southern Comfort', 'Bourbon', 'Irish whiskey'],
-        // gin: ['Gin'],
-        // vermouth: ['Sweet Vermouth', 'Dry Vermouth'],
-        // wine: ['Red wine'],
-        // beer: ['Cider', 'Beer'],
-        // tequila: ['Tequila'],
-        // aperitif: ['Dubonnet Rouge']
 ]
- 
+
 export const nonAlcoholicIngredient = [
-        { parent: 'citrus',
-         children: ['Lime juice']
+        {
+                parent: 'Citrus',
+                children: ['Lime juice']
+        },
+        {
+                parent: 'Soda',
+                children: ['Coca-Cola']
+        },
+        {
+                parent: 'Juice',
+                children: ['Pineapple juice']
+        },
+        {
+                parent: 'Fruit',
+                children: ['Mango']
+        },
+        {
+                parent: 'Spices',
+                children: ['Mint']
+        },
+        {
+                parent: 'Bitters',
+                children: ['Orange bitters', 'Bitters']
+        },
+        {
+                parent: 'Hosehold',
+                children: ['sugar', 'Milk', 'Egg', 'Egg yolk']
+        },
+        {
+                parent: 'fruit',
+                children: ['Mint']
         }
-        // ,
-
-        // citrus: ['Lime juice'],
-        // soda: ['Coca-Cola'],
-        // juice: ['Pineapple juice'],
-        // fruit: ['Mango'],
-        // spices: ['Mint'],
-        // bitters: ['Orange bitters', 'Bitters'],
-        // hosehold: ['sugar', 'Milk', 'Egg', 'Egg yolk']
 ]
 
-
-
-//       , 'Champagne',
-//       ,'Port',
-      
 //       , 
-//       , 
-//       , 
-//       , 
-//       , 'Sherry'
 //       , 'Cognac'
 //       , 'Sloe gin'
 //       , 'Galliano'

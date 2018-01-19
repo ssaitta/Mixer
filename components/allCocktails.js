@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, View, ListView } from 'react-native'
 import { Actions } from 'react-native-router-flux' 
 
-const SingleCocktail = () => {
+const AllCocktails = (props) => {
     return (
         <View>
             <Text
@@ -14,4 +14,4 @@ const SingleCocktail = () => {
     )
 }
 
-export default SingleCocktail
+export default AllCocktails

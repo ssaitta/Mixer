@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import { CheckBox } from 'react-native-elements'
 import { View, Text, StyleSheet } from 'react-native'
 import Accordion from 'react-native-collapsible/Accordion'
 import { Checklist } from './'
@@ -23,7 +22,7 @@ class AccordionList extends Component {
     content(section) {
         return (
             <View style={styles.content}>
-                {section.children.map((item, index)=>{
+                {section.children.map((item, index) => {
                 return <Checklist item={ item } key={index}/>
                 }
                 )}
@@ -33,7 +32,6 @@ class AccordionList extends Component {
 
 
     render() {
-
         const { booze } = this.props
         const { category } = this.state
         const Sections = booze;
@@ -60,7 +58,7 @@ const styles = StyleSheet.create({
     },
     headerText: {
       textAlign: 'center',
-      fontSize: 16,
+      fontSize: 20,
       fontWeight: '500',
     },
     content: {

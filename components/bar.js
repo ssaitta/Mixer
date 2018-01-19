@@ -5,27 +5,30 @@ import {
     View,
     ScrollView
 } from 'react-native'
-import { Actions } from 'react-native-router-flux' //this is how we actualy navigate between screens, how we know where we want to go is based on the sceen key
-import { AlcoholicIngredient, nonAlcoholicIngredient} from '../ingredients'
+import { connect } from 'react-redux'
+import { Actions } from 'react-native-router-flux'
+import { AlcoholicIngredient } from '../ingredients'
 import { Checklist, AccordionList} from './'
+import { availableBooze } from '../store'
+
 
 class Bar extends Component {
     constructor(props){
         super(props);
         this.state = {
-          isLoading: true,
-          cocktails: [],
           AlcoholicIngredients: AlcoholicIngredient
         }
       }
 
     render() {
         const booze = this.state.AlcoholicIngredients
+        let { availableBooze } = this.state
         return (
             <ScrollView>
-               <AccordionList booze={ booze } />
-                <Text
-                onPress={() => Actions.AllCocktails()} //key of we want to go to
+               <AccordionList booze={ booze } addAnAvailbleBooze={this.addAnAvailbleBooze} />
+               {console.log(this.props.availableBooze)} 
+               <Text
+                onPress={() => Actions.AllCocktails()} 
                 >
                    All the drinks!
                 </Text>
@@ -34,4 +37,10 @@ class Bar extends Component {
     }
 }
 
-export default Bar
+const mapState = (state) => {
+    return {
+        availableBooze: state.availableBooze
+    }
+}
+
+export default connect(mapState)(Bar)
