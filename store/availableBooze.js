@@ -3,18 +3,18 @@ const REMOVE_BOOZE = 'REMOVE_BOOZE'
 
 const defaultAvailableBooze = []
 
-const addToAvailableBooze = booze => ({type: ADD_TO_AVAILABLE_BOOZE, booze})
-const removeFromAvailableBooze = booze => ({type: REMOVE_BOOZE, booze})
+export const addToAvailableBooze = booze => ({type: ADD_TO_AVAILABLE_BOOZE, booze})
+export const removeFromAvailableBooze = booze => ({type: REMOVE_BOOZE, booze})
 
-export const addBoozeThunk = (booze) =>
-   dispatch => {
-        dispatch(addToAvailableBooze(booze))
-    }
+// export const addBoozeThunk = (booze) =>
+//    dispatch => {
+//         dispatch(addToAvailableBooze(booze))
+//     }
 
-export const removeBoozeThunk = (booze) =>
-dispatch => {
-        dispatch(removeFromAvailableBooze(booze))
-    }
+// export const removeBoozeThunk = (booze) =>
+// dispatch => {
+//         dispatch(removeFromAvailableBooze(booze))
+//     }
 
 
 export default function (state = defaultAvailableBooze, action){

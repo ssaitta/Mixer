@@ -3,19 +3,8 @@ const REMOVE_MIXER = 'REMOVE_MIXER'
 
 const defaultAvailableMixer = []
 
-const addToAvailableMixer = mixer => ({type: ADD_TO_AVAILABLE_mixer, mixer})
-const removeFromAvailableMixer = mixer => ({type: REMOVE_MIXER, mixer})
-
-export const addMixerThunk = (mixer) =>
-   dispatch => {
-        dispatch(addToAvailableMixer(mixer))
-    }
-
-export const removeMixerThunk = (mixer) =>
-dispatch => {
-        dispatch(removeFromAvailableMixer(mixer))
-    }
-
+export const addToAvailableMixer = mixer => ({type: ADD_TO_AVAILABLE_mixer, mixer})
+export const removeFromAvailableMixer = mixer => ({type: REMOVE_MIXER, mixer})
 
 export default function (state = defaultAvailableMixer, action){
     switch (action.type){

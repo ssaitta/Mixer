@@ -1,66 +1,22 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, ListView, Image, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
-import { Actions } from 'react-native-router-flux'
-import { List, ListItem } from 'react-native-elements'
+import { FilteredCocktails } from './'
 import { fetchCocktailThunk } from '../store'
 
 class AllCocktails extends Component {
-    componentWillMount() {
-        if (this.props.availableBooze.length > 0){
-            const promiseArray = []
-            this.props.availableBooze.forEach((base) => {
-                let promise = fetch(`http://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${base}`)
-                .then(response =>  response.json())
-                .then((foundCocktails) => {
-                    return foundCocktails.drinks
-                })
-                promiseArray.push(promise)
-            })
-            Promise.all(promiseArray)
-            .then(resolvedArray => {
-                let allCocktails = []
-                if (resolvedArray.length === 1){
-                    this.props.addCocktail(resolvedArray[0])
-                }
-                else {
-                    resolvedArray.reduce((a, b) => {
-                        allCocktails = a.concat(b)
-                    })
-                    this.props.addCocktail(allCocktails)
-                }
-            })
-        }
-    }
 
+    componentDidMount() {
+        const available = this.props.availableBooze
+        this.props.fetchCocktails(available)
+    }
 
     render() {
         const { cocktails } = this.props
         return (
             this.props.availableBooze.length > 0 ?
-            //YES YOU HAVE BOOZE
-                <ScrollView >
-                    <View style={styles.container}>
-                        <Text style={styles.contentText}>
-                            Here are some drinks you can make
-                        </Text>
-                    </View>
-                    <List containerStyle={{marginTop: 0, padding: 0}}>
-                        {
-                            cocktails.map((drink, index) => (
-                                <ListItem
-                                roundAvatar
-                                avatar={{uri:drink.strDrinkThumb}}
-                                key={index}
-                                title={drink.strDrink}
-                                onPress={() => Actions.SingleCocktail({cocktailId: cocktails.idDrink})} //key of we want to go to
-                                />
-                            ))
-                        }
-                    </List>
-                </ScrollView>
-
-
+                //YES YOU HAVE BOOZE
+                <FilteredCocktails />
                 :
                 //NO YOU NEED TO GO BUY SOME BOOZE
                 <View style={{
@@ -94,8 +50,8 @@ class AllCocktails extends Component {
 
 const mapDispatch = (dispatch) => {
     return {
-        addCocktail(cocktailList){
-            dispatch(fetchCocktailThunk(cocktailList))
+        fetchCocktails (booze){
+            dispatch(fetchCocktailThunk(booze))
         }
     }
 }
@@ -104,23 +60,11 @@ const mapState = (state) => {
     return {
         availableBooze: state.availableBooze,
         availableMixers: state.availableMixers,
-        cocktails: state.cocktails,
+        cocktails: state.cocktails
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        backgroundColor: '#fff',
-        alignItems: 'center',
-    },
-    contentText: { 
-        flex: 1,
-        padding: 30,
-        fontSize: 20,
-        fontWeight: '400',
-    },
     imageText: {
         padding: 20,
         textAlign: 'center',

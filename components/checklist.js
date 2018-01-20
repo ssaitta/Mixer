@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { CheckBox } from 'react-native-elements'
 import { connect } from 'react-redux'
-import { addBoozeThunk, removeBoozeThunk } from '../store'
+import { addToAvailableBooze, removeFromAvailableBooze } from '../store'
 
 class Checklist extends Component {
     constructor(props){
@@ -33,10 +33,12 @@ class Checklist extends Component {
 const mapDispatch = (dispatch) => {
     return {
         addBooze(boozeStr){
-            dispatch(addBoozeThunk(boozeStr))
+            dispatch(addToAvailableBooze(boozeStr))
+           // dispatch(addBoozeThunk(boozeStr))
         },
         removeBooze(boozeStr){
-            dispatch(removeBoozeThunk(boozeStr))
+            dispatch(removeFromAvailableBooze(boozeStr))
+            //dispatch(removeBoozeThunk(boozeStr))
         }
     }
 }
