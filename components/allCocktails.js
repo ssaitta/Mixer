@@ -17,6 +17,7 @@ class AllCocktails extends Component {
             this.props.availableBooze.length > 0 ?
                 //YES YOU HAVE BOOZE
                 <FilteredCocktails />
+                //<FilteringDown />
                 :
                 //NO YOU NEED TO GO BUY SOME BOOZE
                 <View style={{
