@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, ScrollView, View, FlatList } from 'react-native'
+import { StyleSheet, Text, ScrollView, View, ActivityIndicator } from 'react-native'
 import { Tile } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { fetchOneCocktailThunk } from '../store'
@@ -8,60 +8,61 @@ class SingleCocktail extends Component {
 
     componentDidMount() {
         this.props.fetchCurrentcocktail(this.props.cocktail.idDrink)
+        
     }
 
     render() {
-        const { currentCocktail } = this.props
-        let ingredentList = [], ingredientMeasure = [], directions = currentCocktail.strInstructions
-        for (let i = 1; i < 16; i++) {
-            let ingredent = `strIngredient${i}`
-            if (typeof (currentCocktail[ingredent]) === 'string' && currentCocktail[ingredent].length > 0) {
-                ingredentList.push(currentCocktail[ingredent])
-            }
-        }
-        for (let j = 1; j <= ingredentList.length; j++) {
-            let measure = `strMeasure${j}`
-            ingredientMeasure.push(currentCocktail[measure])
-        }
-        const imageURL = currentCocktail.strDrinkThumb
+        let { currentCocktail } = this.props
+        let ingredientsList = currentCocktail.ingredientList
+        let ingredientMeasure = currentCocktail.measurementList
+        let directions = currentCocktail.directions
+        // console.log("CURRENT COCKTAIL: ", this.props.currentCocktail)
         return (
+            (Object.keys(currentCocktail).length > 0) ?
             <View style={{backgroundColor: 'white'}}>
-                <Tile
-                    imageSrc={{ uri: currentCocktail.strDrinkThumb }}
-                    title={currentCocktail.strDrink}
-                    contentContainerStyle={{ height: 40 }}
-                >
-                    <Text style={styles.Tile}>{currentCocktail.strGlass}</Text>
-                </Tile>
-                <ScrollView style={{ 
-                    top: 40
-                }}>
-                <View style={{flex: 1}}>
-                    <View style={styles.ingredientList}>
-                    {ingredentList.map((ingredient, index) => {
-                        return (
-                            <View style={{flex:1, flexDirection: 'row'}} key={index}>
-                                <Text style={styles.ingredientMeasure}>
-                                    {ingredientMeasure[index]}
+                    <Tile
+                        imageSrc={{ uri: currentCocktail.strDrinkThumb }}
+                        title={currentCocktail.strDrink}
+                        contentContainerStyle={{ height: 40 }}
+                    >
+                        <Text style={styles.Tile}>{currentCocktail.strGlass}</Text>
+                    </Tile>
+                    <ScrollView style={{ 
+                        top: 40
+                    }}>
+                    <View style={{flex: 1}}>
+                        <View style={styles.ingredientList}>
+                        {ingredientsList.map((ingredient, index) => {
+                            return (
+                                <View style={{flex:1, flexDirection: 'row'}} key={index}>
+                                    <Text style={styles.ingredientMeasure}>
+                                        {ingredientMeasure[index]}
+                                    </Text>
+                                    <Text style={styles.ingredientItem}>
+                                        {ingredient}
+                                    </Text>
+                                </View>
+                            )
+                        })}
+                        </View>
+                        
+                        <View style={styles.container}>
+                                <Text style={styles.directionsText}>
+                                {directions}
                                 </Text>
-                                <Text style={styles.ingredientItem}>
-                                    {ingredient}
-                                </Text>
-                            </View>
-                        )
-                    })}
-                    </View>
-                    
-                    <View style={styles.container}>
-                            <Text style={styles.directionsText}>
-                            {directions}
-                            </Text>
-                    </View>
-                    </View>
-                </ScrollView>
+                        </View>
+                        </View>
+                    </ScrollView>
+                </View>
+            :
+            <View style={[styles.container, styles.horizontal]}>
+                <ActivityIndicator size="large" color="#0000ff" />
+                <Text style={styles.loadingText}>
+                    Mixing up your drink
+                </Text>
             </View>
-        )
-    }
+            )
+        }
 }
 
 const mapDispatch = (dispatch) => {

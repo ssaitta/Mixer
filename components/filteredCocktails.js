@@ -3,42 +3,31 @@ import { StyleSheet, Text, View, ListView, ScrollView, ActivityIndicator } from 
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import { List, ListItem } from 'react-native-elements'
+import { booze } from '../ingredients'
 import { fetchCocktailThunk, setCurrentCocktail, filterCockatils } from '../store'
 
 class FilteredCocktails extends Component {
-    constructor(props){
-    super(props);
-    this.state = {
-        filtered: false
-    }
-}
-
-    // shouldComponentUpdate(nextProps, nextState){
-    //     if(nextProps.filtered !== nextState.filtered){
-    //         return false
-    //     }
-    //     else{
-    //         return true
-    //     }
-    // }
-
-    componentDidUpdate() {
-        console.log("THIS STATE FILTERED ", this.state.filtered)
-        if( this.props.cocktails.length > 0 && this.state.filtered === false){
-            this.props.cocktails.forEach( drink => {
-                this.props.filterDownCocktails(drink)
-            })
-            this.setState({filtered: true})
-        }
-    }
-
 
     render() {
-        const { cocktails, availableBooze } = this.props
-        //console.log("COCKTAILS: ", cocktails)
+        let { cocktails, availableBooze } = this.props
+        let filteredCocktails = []
+        if (cocktails.length > 0){
+            filteredCocktails = cocktails.slice()
+            cocktails.forEach((drink) => {
+                // console.log("drink to test ", drink)
+                boozyIngredients = drink.ingredientListA
+                boozyIngredients.forEach(ingredient => {
+                    //console.log("booze to test ", ingredient)
+                    if( availableBooze.indexOf(ingredient) === -1 ){
+                       //console.log("booze to reject", ingredient)
+                        filteredCocktails.splice(filteredCocktails.indexOf(drink), 1)
+                    }
+                })
+            })
+        }
         return (
             (cocktails.length > 0) ?
-                <ScrollView >
+            <ScrollView >
                     <View style={styles.container}>
                         <Text style={styles.contentText}>
                             Here are some drinks you can make
@@ -46,7 +35,7 @@ class FilteredCocktails extends Component {
                     </View>
                     <List containerStyle={{ marginTop: 0, padding: 0 }}>
                         {
-                            cocktails.map((drink, index) => (
+                            filteredCocktails.map((drink, index) => (
 
                                 <ListItem
                                     roundAvatar
@@ -63,13 +52,6 @@ class FilteredCocktails extends Component {
                     </List>
                 </ScrollView>
                 :
-                   //(this.state.NoDrinksFound) ?
-                    // <View style={[styles.container, styles.horizontal]}>
-                    //     <Text style={styles.loadingText}>
-                    //         Sorry, no drinks were found with only those ingredients
-                    //     </Text>
-                    // </View>
-                    //:
                     <View style={[styles.container, styles.horizontal]}>
                         <ActivityIndicator size="large" color="#0000ff" />
                         <Text style={styles.loadingText}>
@@ -80,20 +62,14 @@ class FilteredCocktails extends Component {
     }
 }
 
-const mapDispatch = (dispatch) => {
-    return {
-        // fetchCocktails(drink) {
-        //     dispatch(fetchCocktailThunk(drink))
-        // },
-        // makeCurrentCocktail(evt){
-        //     dispatch(setCurrentCocktail(e))
-        // },
-        filterDownCocktails(cocktailObj){
-            dispatch(filterCockatils(cocktailObj))
-        }
+// const mapDispatch = (dispatch) => {
+//     return {
+//         filterDownCocktails(cocktailObj){
+//             dispatch(filterCockatils(cocktailObj))
+//         }
 
-    }
-}
+//     }
+// }
 
 const mapState = (state) => {
     return {
@@ -131,4 +107,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default connect(mapState, mapDispatch)(FilteredCocktails)
+export default connect(mapState)(FilteredCocktails)
