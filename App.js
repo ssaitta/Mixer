@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Bar, SingleCocktail, AllCocktails } from './components/index'
+import { Bar, SingleCocktail, AllCocktails, Mixers } from './components/index'
 import { Router, Scene } from 'react-native-router-flux'
 import {Provider} from 'react-redux'
 import store from './store'
@@ -35,6 +35,11 @@ export default class App extends React.Component {
                 key="AllCocktails"
                 component={AllCocktails}
                 title="Cocktails"
+                />
+                <Scene
+                key="Mixers"
+                component={Mixers}
+                title="The Cabinet"
                 />
             </Scene>
         </Router>

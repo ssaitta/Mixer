@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { CheckBox } from 'react-native-elements'
 import { connect } from 'react-redux'
-import { addToAvailableBooze, removeFromAvailableBooze } from '../store'
+import { addToAvailableMixer, removeFromAvailableMixer } from '../store'
 
 class Checklist extends Component {
     constructor(props){
@@ -22,8 +22,7 @@ class Checklist extends Component {
             title={lowercaseItem}
             checked={this.state.checked}
             onPress={() => this.setState({checked: !checked}, () => {
-                console.log("Item ", lowercaseItem)
-                return !checked ? this.props.addBooze(lowercaseItem) : this.props.removeBooze(lowercaseItem)
+                return !checked ? this.props.addMixer(lowercaseItem) : this.props.removeMixer(lowercaseItem)
             })}
             />
         )
@@ -33,18 +32,18 @@ class Checklist extends Component {
 
 const mapDispatch = (dispatch) => {
     return {
-        addBooze(boozeStr){
-            dispatch(addToAvailableBooze(boozeStr))
+        addMixer(mixerStr){
+            dispatch(addToAvailableMixer(mixerStr))
         },
-        removeBooze(boozeStr){
-            dispatch(removeFromAvailableBooze(boozeStr))
+        removeMixer(mixerStr){
+            dispatch(removeFromAvailableMixer(mixerStr))
         }
     }
 }
 
 const mapState = (state) => {
     return {
-        availableBooze: state.availableBooze
+        availableMixers: state.availableMixers
     }
 }
 

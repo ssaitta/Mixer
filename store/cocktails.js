@@ -94,10 +94,10 @@ export const fetchCocktailThunk = (listOfBooze) =>
                     }
                     ingredientList.forEach(ingredient => {
                         if(booze.indexOf(ingredient) !== -1){
-                            ingredientListA.push(ingredient)
+                            ingredientListA.push(ingredient.toLowerCase())
                         }
                         else{
-                            ingredientListM.push(ingredient)
+                            ingredientListM.push(ingredient.toLowerCase())
                         }
                     })
 

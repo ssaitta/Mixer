@@ -8,7 +8,7 @@ import {
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import { AlcoholicIngredient } from '../ingredients'
-import { Checklist, AccordionList } from './'
+import { Checklist, AccordionListBooze } from './'
 import { availableBooze } from '../store'
 
 
@@ -27,16 +27,16 @@ class Bar extends Component {
             <ScrollView>
                 <View style={styles.container}>
                     <Text style={styles.contentText}>
-                        Choose A Base
+                        Choose A Booze
                     </Text>
                 </View>
-                <AccordionList booze={booze} addAnAvailbleBooze={this.addAnAvailbleBooze} />
+                <AccordionListBooze listItems={booze} addAnAvailbleBooze={this.addAnAvailbleBooze} />
                 {console.log(this.props.availableBooze)}
                 <View style={styles.container}>
                     <Text style={styles.contentText}
-                        onPress={() => Actions.AllCocktails()}
+                        onPress={() => Actions.Mixers()}
                     >
-                        Mix A Drink
+                        Pick your Mixers
                     </Text>
                 </View>
             </ScrollView>

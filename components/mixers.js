@@ -8,30 +8,30 @@ import {
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import { nonAlcoholicIngredient } from '../ingredients'
-import { Checklist, AccordionList } from './'
-import { availableBooze } from '../store'
+import { Checklist, AccordionListMix } from './'
+import { availableMixers } from '../store'
 
 
 class Mixers extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            AlcoholicIngredients: nonAlcoholicIngredient
+            nonAlcoholicIngredient: nonAlcoholicIngredient
         }
     }
 
     render() {
         const mixers = this.state.nonAlcoholicIngredient
-        let { availableBooze } = this.state
+        let { availableMixers } = this.state
         return (
             <ScrollView>
                 <View style={styles.container}>
                     <Text style={styles.contentText}>
-                        Choose A Base
+                        Choose Some Mixers
                     </Text>
                 </View>
-                <AccordionList mixers={mixers} addAnAvailbleBooze={this.addAnAvailbleBooze} />
-                {console.log(this.props.availableBooze)}
+                <AccordionListMix listItems={mixers} addToAvailableMixer={this.addToAvailableMixer} />
+                {console.log(this.props.availableMixers)}
                 <View style={styles.container}>
                     <Text style={styles.contentText}
                         onPress={() => Actions.AllCocktails()}
@@ -46,7 +46,7 @@ class Mixers extends Component {
 
 const mapState = (state) => {
     return {
-        availableBooze: state.availableBooze
+        availableMixers: state.availableMixers
     }
 }
 

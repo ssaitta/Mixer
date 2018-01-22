@@ -3,13 +3,13 @@ import { StyleSheet, Text, View, ListView, ScrollView, ActivityIndicator } from 
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import { List, ListItem } from 'react-native-elements'
-import { booze } from '../ingredients'
+//import { booze, mixer } from '../ingredients'
 import { fetchCocktailThunk, setCurrentCocktail, filterCockatils } from '../store'
 
 class FilteredCocktails extends Component {
 
     render() {
-        let { cocktails, availableBooze } = this.props
+        let { cocktails, availableBooze, availableMixers } = this.props
         let allCocktailsCopy = [], indToRemove = [], filteredCocktails = []
         if (cocktails.length > 0){
             allCocktailsCopy = cocktails.slice()
@@ -22,8 +22,16 @@ class FilteredCocktails extends Component {
                         }
                     }
                 })
-            })
-        }
+                mixerIngredients = drink.ingredientListM
+                mixerIngredients.forEach(ingredient => {
+                    if( availableMixers.indexOf(ingredient) === -1 ){
+                        if(indToRemove.indexOf(index) === -1){
+                            indToRemove.push(index)
+                        }
+                    }
+                })
+        })
+    }
         allCocktailsCopy.forEach((drink, index) => {
             if(indToRemove.indexOf(index) === -1){
                 filteredCocktails.push(drink)

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native'
 import Accordion from 'react-native-collapsible/Accordion'
-import { Checklist } from './'
+import { ChecklistMixer } from './'
+import mixers from './mixers';
 
 class AccordionList extends Component {
+
 
     header(section) {
         return (
@@ -17,7 +19,7 @@ class AccordionList extends Component {
         return (
             <View style={styles.content}>
                 {section.children.map((item, index) => {
-                return <Checklist item={ item } key={index}/>
+                return <ChecklistMixer item={ item } key={index}/>
                 }
                 )}
             </View>
@@ -25,8 +27,8 @@ class AccordionList extends Component {
     }
 
     render() {
-        const { booze } = this.props
-        const Sections = booze;
+        const { listItems } = this.props
+        const Sections = listItems;
         return (
             <Accordion
                sections={Sections}
@@ -45,7 +47,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#F5FCFF',
     },
     header: {
-      backgroundColor: 'rgb(220,241,240)',
+      backgroundColor: 'rgba(179, 167, 205, 0.3)',
       padding: 10,
     },
     headerText: {
