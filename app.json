@@ -10,7 +10,7 @@
     "orientation": "portrait",
     "icon": "./assets/shaker2.png",
     "splash": {
-      "image": "./assets/splash2.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

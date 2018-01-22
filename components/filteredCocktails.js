@@ -10,21 +10,25 @@ class FilteredCocktails extends Component {
 
     render() {
         let { cocktails, availableBooze } = this.props
-        let filteredCocktails = []
+        let allCocktailsCopy = [], indToRemove = [], filteredCocktails = []
         if (cocktails.length > 0){
-            filteredCocktails = cocktails.slice()
-            cocktails.forEach((drink) => {
-                // console.log("drink to test ", drink)
+            allCocktailsCopy = cocktails.slice()
+            cocktails.forEach((drink, index) => {
                 boozyIngredients = drink.ingredientListA
                 boozyIngredients.forEach(ingredient => {
-                    //console.log("booze to test ", ingredient)
                     if( availableBooze.indexOf(ingredient) === -1 ){
-                       //console.log("booze to reject", ingredient)
-                        filteredCocktails.splice(filteredCocktails.indexOf(drink), 1)
+                        if(indToRemove.indexOf(index) === -1){
+                            indToRemove.push(index)
+                        }
                     }
                 })
             })
         }
+        allCocktailsCopy.forEach((drink, index) => {
+            if(indToRemove.indexOf(index) === -1){
+                filteredCocktails.push(drink)
+            }
+        })
         return (
             (cocktails.length > 0) ?
             <ScrollView >
@@ -61,15 +65,6 @@ class FilteredCocktails extends Component {
         )
     }
 }
-
-// const mapDispatch = (dispatch) => {
-//     return {
-//         filterDownCocktails(cocktailObj){
-//             dispatch(filterCockatils(cocktailObj))
-//         }
-
-//     }
-// }
 
 const mapState = (state) => {
     return {

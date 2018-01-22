@@ -37,7 +37,27 @@ export const fetchCocktailThunk = (listOfBooze) =>
                     })
                 })
             }
-        return allCocktails
+            let indicesToRemove = []
+            let cockatilIds = allCocktails.map(drink => {
+                return drink.idDrink
+            })
+
+            let filteredIds = cockatilIds.filter((drink, index) => {
+                if(cockatilIds.indexOf(drink) !== index){
+                    indicesToRemove.push(index)
+                    return false
+                }
+            })
+
+            indicesToRemove.forEach(ind => {
+                allCocktails[ind] = false
+                return
+            })
+            
+            let unique = allCocktails.filter((drink, index) => {
+                return drink !== false
+            })
+        return unique
         })
         .then( allCocktails => {
             allCocktails.forEach(drink => {
