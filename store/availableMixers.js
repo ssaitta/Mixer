@@ -1,7 +1,7 @@
 const ADD_TO_AVAILABLE_MIXERS = 'ADD_TO_AVAILABLE_MIXERS'
 const REMOVE_MIXER = 'REMOVE_MIXER'
 
-const defaultAvailableMixer = []
+const defaultAvailableMixer = ['sugar','water','ice','demerara sugar','salt']
 
 export const addToAvailableMixer = mixer => ({type: ADD_TO_AVAILABLE_MIXERS, mixer})
 export const removeFromAvailableMixer = mixer => ({type: REMOVE_MIXER, mixer})

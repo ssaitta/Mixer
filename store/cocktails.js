@@ -21,14 +21,6 @@ export const fetchCocktailThunk = (listOfBooze) =>
         Promise.all(fetchAllPromiseArray)
         .then(resolvedArray => {
             let allCocktails = []
-            if (resolvedArray.length === 1){
-                resolvedArray[0].forEach(drink => {
-                    if (drink.strDrinkThumb !== null){
-                        allCocktails.push(drink)
-                    }
-                })
-           }
-            else {
                 resolvedArray.forEach(base => {
                     base.forEach(drink => {
                         if (drink.strDrinkThumb !== null){
@@ -36,13 +28,12 @@ export const fetchCocktailThunk = (listOfBooze) =>
                         }
                     })
                 })
-            }
             let indicesToRemove = []
             let cockatilIds = allCocktails.map(drink => {
                 return drink.idDrink
             })
 
-            let filteredIds = cockatilIds.filter((drink, index) => {
+            cockatilIds.filter((drink, index) => {
                 if(cockatilIds.indexOf(drink) !== index){
                     indicesToRemove.push(index)
                     return false
@@ -51,16 +42,15 @@ export const fetchCocktailThunk = (listOfBooze) =>
 
             indicesToRemove.forEach(ind => {
                 allCocktails[ind] = false
-                return
             })
             
-            let unique = allCocktails.filter((drink, index) => {
+            let uniqueCocktails = allCocktails.filter((drink) => {
                 return drink !== false
             })
-        return unique
+        return uniqueCocktails
         })
-        .then( allCocktails => {
-            allCocktails.forEach(drink => {
+        .then( uniqueCocktails => {
+            uniqueCocktails.forEach(drink => {
                 let promise = fetch(`http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drink.idDrink}`)
                 .then(response => response.json())
                 .then(foundCocktail => {
@@ -72,15 +62,10 @@ export const fetchCocktailThunk = (listOfBooze) =>
             Promise.all(promiseArray)
             .then(resolvedArray => {
                 let allCocktailsDetailed = []
-                if (resolvedArray.length === 1){
-                    allCocktailsDetailed.push(resolvedArray[0])
-                }
-                else {
-                    resolvedArray.forEach(drink => {
-                        allCocktailsDetailed.push(drink)
-                    })
-                }
-            return allCocktailsDetailed  //this needs to be checked for dublicates
+                resolvedArray.forEach(drink => {
+                    allCocktailsDetailed.push(drink)
+                })
+            return allCocktailsDetailed
             })
             .then(allCocktailsDetailed => {
                 const cocktailObj = allCocktailsDetailed.map( drink => {
@@ -117,33 +102,6 @@ export const fetchCocktailThunk = (listOfBooze) =>
         })
         .catch(err => console.log(err))
    }
-
-export const filterCockatils = (cocktailObj) =>
-(dispatch, getState) => {
-    let startingCocktail = cocktailObj
-    let state = getState()
-    fetch(`http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${cocktailObj.idDrink}`)
-    .then(response => response.json())
-    .then(foundCocktail => {
-        currentCocktail = foundCocktail.drinks[0]
-        let ingredentList = []
-        for (let i = 1; i < 16; i++) {
-            let ingredent = `strIngredient${i}`
-            if (typeof (currentCocktail[ingredent]) === 'string' && currentCocktail[ingredent].length > 0) {
-                ingredentList.push(currentCocktail[ingredent])
-            }
-        }
-        return ingredentList
-    })
-    .then(nonemptyIngredients => {
-        nonemptyIngredients.forEach(ingredient => {
-            if (booze.indexOf(ingredient) !== -1 && state.availableBooze.indexOf(ingredient) === -1){
-                dispatch(removeCocktail(startingCocktail))
-            }
-        })
-    })
-    .catch(err => console.log(err))
-}
 
 export default function (state = defaultCocktails, action){
     switch (action.type){

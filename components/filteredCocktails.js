@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import { List, ListItem } from 'react-native-elements'
 //import { booze, mixer } from '../ingredients'
-import { fetchCocktailThunk, setCurrentCocktail, filterCockatils } from '../store'
+import { fetchCocktailThunk, setCurrentCocktail } from '../store'
 
 class FilteredCocktails extends Component {
 
@@ -14,10 +14,12 @@ class FilteredCocktails extends Component {
         if (cocktails.length > 0){
             allCocktailsCopy = cocktails.slice()
             cocktails.forEach((drink, index) => {
+                //console.log("DRINK IN FILTER ", drink.strDrink, index)
                 boozyIngredients = drink.ingredientListA
                 boozyIngredients.forEach(ingredient => {
                     if( availableBooze.indexOf(ingredient) === -1 ){
                         if(indToRemove.indexOf(index) === -1){
+                            //console.log("BOOZE TO REJECT ", ingredient ," ",index)
                             indToRemove.push(index)
                         }
                     }
@@ -26,12 +28,14 @@ class FilteredCocktails extends Component {
                 mixerIngredients.forEach(ingredient => {
                     if( availableMixers.indexOf(ingredient) === -1 ){
                         if(indToRemove.indexOf(index) === -1){
+                            //console.log("MIXER TO REJECT ", ingredient ," ",index)
                             indToRemove.push(index)
                         }
                     }
                 })
         })
     }
+    //console.log("INDEX TO REMOVE ", indToRemove)
         allCocktailsCopy.forEach((drink, index) => {
             if(indToRemove.indexOf(index) === -1){
                 filteredCocktails.push(drink)

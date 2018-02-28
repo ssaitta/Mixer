@@ -16,3 +16,5 @@ export default function (state = defaultAvailableBooze, action){
             return state
     }
 }
+
+//Maybe make less booze and mixer options but add all from the catagory if you add one. 

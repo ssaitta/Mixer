@@ -93,12 +93,8 @@ export const nonAlcoholicIngredient = [
                 children: ['Grenadine', 'Sugar syrup', 'Chocolate syrup']
         },
         {
-                parent: 'Hosehold',
+                parent: 'Household',
                 children: ['Ice', 'Water', 'Sugar', 'Milk', 'Heavy cream', 'Egg', 'Egg yolk', 'Salt', 'Demerara Sugar', 'Coffee', 'Espresso', 'Chocolate', 'Cocoa powder', 'Chocolate ice-cream', 'Vanilla ice-cream', 'Yoghurt']
-        },
-        {
-                parent: 'fruit',
-                children: ['Mint']
         }
 ]
 
@@ -314,4 +310,5 @@ export const mixer = ['Tea'
         , 'Egg'
         , 'Egg yolk'
         , 'Mint'
+        , 'Salt'
     ]

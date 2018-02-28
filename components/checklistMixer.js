@@ -3,7 +3,7 @@ import { CheckBox } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { addToAvailableMixer, removeFromAvailableMixer } from '../store'
 
-class Checklist extends Component {
+class ChecklistMix extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -48,4 +48,4 @@ const mapState = (state) => {
 }
 
 
-export default connect(mapState, mapDispatch)(Checklist)
+export default connect(mapState, mapDispatch)(ChecklistMix)
