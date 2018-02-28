@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, ListView, ScrollView, ActivityIndicator } from 'react-native'
+import { StyleSheet, Text, View, ListView, ScrollView, ActivityIndicator, Image } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import { List, ListItem } from 'react-native-elements'
@@ -50,7 +50,12 @@ class FilteredCocktails extends Component {
                         </Text>
                     </View>
                     <List containerStyle={{ marginTop: 0, padding: 0 }}>
-                        {
+                        {   
+                            (filteredCocktails.length === 0) ? 
+                            <Text style={styles.contentText} >
+                            Shots
+                            </Text>
+                            :
                             filteredCocktails.map((drink, index) => (
 
                                 <ListItem

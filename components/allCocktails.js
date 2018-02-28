@@ -6,13 +6,12 @@ import { fetchCocktailThunk } from '../store'
 
 class AllCocktails extends Component {
 
-    componentDidMount() {
+    componentWillMount() {
         const available = this.props.availableBooze
         this.props.fetchCocktails(available)
     }
 
     render() {
-        // const { cocktails } = this.props
         return (
             this.props.availableBooze.length > 0 ?
                 //YES YOU HAVE BOOZE
