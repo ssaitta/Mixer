@@ -28,26 +28,16 @@ export const fetchCocktailThunk = (listOfBooze) =>
                         }
                     })
                 })
-            let indicesToRemove = []
-            let cockatilIds = allCocktails.map(drink => {
-                return drink.idDrink
-            })
+            let uniqueDrinkIds = []
+            let uniqueDrinks = []
 
-            cockatilIds.filter((drink, index) => {
-                if(cockatilIds.indexOf(drink) !== index){
-                    indicesToRemove.push(index)
-                    return false
+            allCocktails.forEach(drink => {
+                if (uniqueDrinkIds.indexOf(drink.idDrink) === -1){
+                    uniqueDrinkIds.push(drink.idDrink)
+                    uniqueDrinks.push(drink)
                 }
             })
-
-            indicesToRemove.forEach(ind => {
-                allCocktails[ind] = false
-            })
-            
-            let uniqueCocktails = allCocktails.filter((drink) => {
-                return drink !== false
-            })
-        return uniqueCocktails
+        return uniqueDrinks
         })
         .then( uniqueCocktails => {
             uniqueCocktails.forEach(drink => {
