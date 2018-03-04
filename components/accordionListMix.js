@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native'
 import Accordion from 'react-native-collapsible/Accordion'
 import { ChecklistMixer } from './'
-import mixers from './mixers';
 
 class AccordionList extends Component {
 

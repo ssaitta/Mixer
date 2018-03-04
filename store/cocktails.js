@@ -10,23 +10,24 @@ export const fetchCocktailThunk = (listOfBooze) =>
    dispatch => {
         const fetchAllPromiseArray = [], promiseArray = []
         listOfBooze.forEach(base => {
-            let promise = fetch(`http://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${base}`) 
-            .then(response =>  response.json())
-            .then((foundCocktails) => {
-                return foundCocktails.drinks
-            })
+            let promise = fetch(`http://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${base}`)
+            .then(response => response.json())
+            .then((foundCocktails) => foundCocktails.drinks)
             .catch(err => console.log(err))
             fetchAllPromiseArray.push(promise)
         })
         Promise.all(fetchAllPromiseArray)
         .then(resolvedArray => {
             let allCocktails = []
+                //console.log("RESOLVED ARRAY ", resolvedArray)
                 resolvedArray.forEach(base => {
+                    console.log('BASE ', base[0])
                     base.forEach(drink => {
+                        // console.log('DRINK ', drink)
                         if (drink.strDrinkThumb !== null){
                             allCocktails.push(drink)
                         }
-                    })
+                    })  
                 })
             let uniqueDrinkIds = []
             let uniqueDrinks = []
