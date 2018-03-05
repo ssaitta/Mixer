@@ -16,10 +16,10 @@ class SingleCocktail extends Component {
         let ingredientsList = currentCocktail.ingredientList
         let ingredientMeasure = currentCocktail.measurementList
         let directions = currentCocktail.directions
-        // console.log("CURRENT COCKTAIL: ", this.props.currentCocktail)
         return (
             (Object.keys(currentCocktail).length > 0) ?
             <View style={{backgroundColor: 'white'}}>
+                <ScrollView >
                     <Tile
                         imageSrc={{ uri: currentCocktail.strDrinkThumb }}
                         title={currentCocktail.strDrink}
@@ -29,7 +29,7 @@ class SingleCocktail extends Component {
                     </Tile>
                     <ScrollView style={{ 
                         top: 40
-                    }}>
+                    }}>  
                     <View style={{flex: 1}}>
                         <View style={styles.ingredientList}>
                         {ingredientsList.map((ingredient, index) => {
@@ -52,6 +52,7 @@ class SingleCocktail extends Component {
                                 </Text>
                         </View>
                         </View>
+                    </ScrollView>
                     </ScrollView>
                 </View>
             :
@@ -84,7 +85,7 @@ const mapState = (state) => {
 const styles = StyleSheet.create({
     container: {
         top: 0,
-        height: 650,
+        height: 350,
     },
     Tile: {
         textAlign: 'left',     

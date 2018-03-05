@@ -14,12 +14,10 @@ class FilteredCocktails extends Component {
         if (cocktails.length > 0){
             allCocktailsCopy = cocktails.slice()
             cocktails.forEach((drink, index) => {
-                //console.log("DRINK IN FILTER ", drink.strDrink, index)
                 boozyIngredients = drink.ingredientListA
                 boozyIngredients.forEach(ingredient => {
                     if( availableBooze.indexOf(ingredient) === -1 ){
                         if(indToRemove.indexOf(index) === -1){
-                            //console.log("BOOZE TO REJECT ", ingredient ," ",index)
                             indToRemove.push(index)
                         }
                     }
@@ -28,14 +26,12 @@ class FilteredCocktails extends Component {
                 mixerIngredients.forEach(ingredient => {
                     if( availableMixers.indexOf(ingredient) === -1 ){
                         if(indToRemove.indexOf(index) === -1){
-                            //console.log("MIXER TO REJECT ", ingredient ," ",index)
                             indToRemove.push(index)
                         }
                     }
                 })
         })
     }
-    //console.log("INDEX TO REMOVE ", indToRemove)
         allCocktailsCopy.forEach((drink, index) => {
             if(indToRemove.indexOf(index) === -1){
                 filteredCocktails.push(drink)
@@ -64,7 +60,7 @@ class FilteredCocktails extends Component {
                                     key={index}
                                     title={drink.strDrink}
                                     onPress={(evt) => {
-                                        Actions.SingleCocktail({ cocktail: drink }) //key of we want to go to
+                                        Actions.SingleCocktail({ cocktail: drink })
                                     }
                                     }
                                 />

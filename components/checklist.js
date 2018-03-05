@@ -10,7 +10,7 @@ class Checklist extends Component {
             checked: false
         }
     }
-    
+
     render(){
         const { item } = this.props
         const { checked } = this.state
@@ -22,7 +22,6 @@ class Checklist extends Component {
             title={lowercaseItem}
             checked={this.state.checked}
             onPress={() => this.setState({checked: !checked}, () => {
-                console.log("Item ", lowercaseItem)
                 return !checked ? this.props.addBooze(lowercaseItem) : this.props.removeBooze(lowercaseItem)
             })}
             />

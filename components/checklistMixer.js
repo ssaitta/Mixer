@@ -10,6 +10,12 @@ class ChecklistMix extends Component {
             checked: false
         }
     }
+
+    componentDidMount(){
+        if (this.props.availableMixers.indexOf(this.props.item.toLowerCase()) !== -1){
+            this.setState({checked: true})
+        }
+    }
     
     render(){
         const { item } = this.props

@@ -21,15 +21,6 @@ dispatch => {
                 measurementList.push(currentCocktail[measure])
             }
         }
-        // ingredientList.forEach(ingredient => {
-        //     if(booze.indexOf(ingredient) !== -1){
-        //         ingredientListA.push(ingredient)
-        //     }
-        //     else{
-        //         ingredientListM.push(ingredient)
-        //     }
-        // })
-
         return {
                 strDrink: currentCocktail.strDrink,
                 strDrinkThumb: currentCocktail.strDrinkThumb,
