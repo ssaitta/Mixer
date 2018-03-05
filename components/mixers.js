@@ -7,7 +7,7 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
-import { nonAlcoholicIngredient } from '../ingredients'
+import { nonAlcoholicIngredient } from '../ingredientsUpdate'
 import { Checklist, AccordionListMix } from './'
 import { availableMixers } from '../store'
 

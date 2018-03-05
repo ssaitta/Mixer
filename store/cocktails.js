@@ -19,11 +19,8 @@ export const fetchCocktailThunk = (listOfBooze) =>
         Promise.all(fetchAllPromiseArray)
         .then(resolvedArray => {
             let allCocktails = []
-                //console.log("RESOLVED ARRAY ", resolvedArray)
                 resolvedArray.forEach(base => {
-                    console.log('BASE ', base[0])
                     base.forEach(drink => {
-                        // console.log('DRINK ', drink)
                         if (drink.strDrinkThumb !== null){
                             allCocktails.push(drink)
                         }

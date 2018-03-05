@@ -67,7 +67,7 @@ export const addToAvailableBooze = booze => {
     }
 }
     
-export const removeFromAvailableBooze = booze => {//({type: REMOVE_BOOZE, booze})
+export const removeFromAvailableBooze = booze => {
     let boozeToRemove = [booze]
     let returnObj = {type: REMOVE_BOOZE}
     switch (booze){
@@ -96,13 +96,13 @@ export const removeFromAvailableBooze = booze => {//({type: REMOVE_BOOZE, booze}
             returnObj.boozeToRemove = [...boozeToRemove, 'wild turkey', 'jim beam']
             return returnObj
         case 'orange liqueur':
-            returnObj.boozeToRemove  = [...boozeToRemove, 'grand marnier', 'triple sec', 'cointreau']
+            returnObj.boozeToRemove  = ['grand marnier', 'triple sec', 'cointreau']
             return returnObj
         case 'almond liqueur':
-            returnObj.boozeToRemove  = [...boozeToRemove, 'amaretto']
+            returnObj.boozeToRemove  = ['amaretto']
             return returnObj
         case 'anise liqueur':
-            returnObj.boozeToRemove  = [...boozeToRemove, 'sambuca', 'ricard', 'black sambuca', 'ouzo']
+            returnObj.boozeToRemove  = ['sambuca', 'ricard', 'black sambuca', 'ouzo']
             return returnObj
         case 'coffee liqueur':
             returnObj.boozeToRemove  = [...boozeToRemove, 'kahlua']
@@ -114,10 +114,10 @@ export const removeFromAvailableBooze = booze => {//({type: REMOVE_BOOZE, booze}
             returnObj.boozeToRemove  = [...boozeToRemove, 'baileys irish cream', "bailey's irish cream"]
             return returnObj
         case 'creme de menthe':
-            returnObj.boozeToRemove  = [...boozeToRemove, 'white creme de menthe', 'green creme de menthe']
+            returnObj.boozeToRemove  = ['white creme de menthe', 'green creme de menthe']
             return returnObj
         case 'cinnamon schnapps':
-            returnObj.boozeToRemove  = [...boozeToRemove, 'firewater', 'goldschlager', 'hot damn']
+            returnObj.boozeToRemove  = ['firewater', 'goldschlager', 'hot damn']
             return returnObj
         case 'peach schnapps':
             returnObj.boozeToRemove = [...boozeToRemove, 'peachtree schnapps']
@@ -141,5 +141,3 @@ export default function (state = defaultAvailableBooze, action){
             return state
     }
 }
-
-//Maybe make less booze and mixer options but add all from the catagory if you add one. 

@@ -38,7 +38,7 @@ export const AlcoholicIngredient = [
         {
                 parent: 'Liqueur',
                 children: ['Orange Liqueur', 'Almond Liqueur', 'Anise liqueur', 'Jägermeister', 'Dubonnet Rouge', 'Coffee liqueur', 'Irish cream', 'Chocolate liqueur',
-                        'Campari', 'Creme de Cassis', 'Frangelico', 'Chambord raspberry liqueur', 'Green Chartreuse',
+                        'Campari', 'Aperol', 'Creme de Cassis', 'Frangelico', 'Chambord raspberry liqueur', 'Green Chartreuse',
                         'Creme de Menthe', 'Blue Curacao', 'Kiwi liqueur', 'Galliano', 'Midori melon liqueur', 'Yukon Jack', 'Banana liqueur']
         },
         {
@@ -62,24 +62,24 @@ export const AlcoholicIngredient = [
 export const nonAlcoholicIngredient = [
         {
                 parent: 'Citrus',
-                children: ['Lime juice', 'Lemon juice', 'Lime', 'Lemon', 'Sour mix', 'Lemon peel']
+                children: ['Lemon', 'Lime']
         },
         {
                 parent: 'Soda',
-                children: ['Carbonated water', 'Coca-Cola', 'Sprite', '7-Up']
+                children: ['Carbonated water', 'Tonic Water', 'Coca-Cola', 'Ginger ale', 'Sprite', '7-Up']
         },
         {
                 parent: 'Juice',
-                children: ['Orange juice', 'Cranberry Juice', 'Apple cider', 'Peach nectar', 'Pineapple Juice', 'Lemonade',
-                        'Grapefruit juice', 'Apple juice', 'Tomato juice', 'Fruit punch', 'Kool-Aid', 'Grape juice']
+                children: ['Orange juice', 'Cranberry Juice', 'Tomato juice', 'Apple cider', 'Peach nectar', 'Pineapple Juice',
+                        'Grapefruit juice', 'Apple juice', 'Lemonade', 'Kool-Aid', 'Fruit punch', 'Grape juice']
         },
         {
                 parent: 'Fruit',
-                children: ['Orange', 'Berries', 'Strawberries', 'Mango', 'Cranberries', 'Cantaloupe', 'Grapes', 'Kiwi']
+                children: ['Orange', 'Strawberries']
         },
         {
                 parent: 'Spices',
-                children: ['Mint', 'Ginger', 'Angelica root']
+                children: ['Mint', 'Ginger', 'Cloves', 'Cinnamon', 'Angelica root']
         },
         {
                 parent: 'Bitters',
@@ -87,11 +87,10 @@ export const nonAlcoholicIngredient = [
         },
         {
                 parent: 'Syrup',
-                children: ['Grenadine', 'Chocolate syrup']
+                children: ['Grenadine']
         },
         {
                 parent: 'Household',
-                children: ['Ice', 'Water', 'Sugar', 'Milk', 'Heavy cream', 'Egg', 'Egg yolk', 'Salt', 'Demerara Sugar', 'Coffee',
-                        'Espresso', 'Chocolate', 'Cocoa powder', 'Chocolate ice-cream', 'Vanilla ice-cream', 'Yoghurt', 'Tea', 'Sugar syrup']
+                children: ['Milk', 'Heavy cream', 'Egg', 'Hot sauce', 'Coffee', 'Espresso', 'Tea', 'Chocolate ice-cream', 'Vanilla ice-cream']
         }
 ]
